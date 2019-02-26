@@ -1,0 +1,11 @@
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication/bin/Debug/netcoreapp2.1/MatrixMultiplication.deps.json
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication/bin/Debug/netcoreapp2.1/MatrixMultiplication.runtimeconfig.json
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication/bin/Debug/netcoreapp2.1/MatrixMultiplication.runtimeconfig.dev.json
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication/bin/Debug/netcoreapp2.1/MatrixMultiplication.dll
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication/bin/Debug/netcoreapp2.1/MatrixMultiplication.pdb
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication/obj/Debug/netcoreapp2.1/MatrixMultiplication.csprojAssemblyReference.cache
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication/obj/Debug/netcoreapp2.1/MatrixMultiplication.csproj.CoreCompileInputs.cache
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication/obj/Debug/netcoreapp2.1/MatrixMultiplication.AssemblyInfoInputs.cache
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication/obj/Debug/netcoreapp2.1/MatrixMultiplication.AssemblyInfo.cs
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication/obj/Debug/netcoreapp2.1/MatrixMultiplication.dll
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication/obj/Debug/netcoreapp2.1/MatrixMultiplication.pdb

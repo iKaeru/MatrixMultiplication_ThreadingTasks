@@ -1,0 +1,17 @@
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication.Tests/bin/Debug/netcoreapp2.1/NUnit3.TestAdapter.dll
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication.Tests/bin/Debug/netcoreapp2.1/NUnit3.TestAdapter.pdb
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication.Tests/bin/Debug/netcoreapp2.1/nunit.engine.netstandard.dll
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication.Tests/bin/Debug/netcoreapp2.1/MatrixMultiplication.Tests.deps.json
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication.Tests/bin/Debug/netcoreapp2.1/MatrixMultiplication.Tests.runtimeconfig.json
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication.Tests/bin/Debug/netcoreapp2.1/MatrixMultiplication.Tests.runtimeconfig.dev.json
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication.Tests/bin/Debug/netcoreapp2.1/MatrixMultiplication.Tests.dll
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication.Tests/bin/Debug/netcoreapp2.1/MatrixMultiplication.Tests.pdb
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication.Tests/bin/Debug/netcoreapp2.1/MatrixMultiplication.dll
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication.Tests/bin/Debug/netcoreapp2.1/MatrixMultiplication.pdb
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication.Tests/obj/Debug/netcoreapp2.1/MatrixMultiplication.Tests.csprojAssemblyReference.cache
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication.Tests/obj/Debug/netcoreapp2.1/MatrixMultiplication.Tests.csproj.CoreCompileInputs.cache
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication.Tests/obj/Debug/netcoreapp2.1/MatrixMultiplication.Tests.AssemblyInfoInputs.cache
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication.Tests/obj/Debug/netcoreapp2.1/MatrixMultiplication.Tests.AssemblyInfo.cs
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication.Tests/obj/Debug/netcoreapp2.1/MatrixMultiplication.Tests.csproj.CopyComplete
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication.Tests/obj/Debug/netcoreapp2.1/MatrixMultiplication.Tests.dll
+/Users/kaeru/Desktop/важно/Работа/Kontur/2_4 Многопоточность/MatrixMultiplication/MatrixMultiplication.Tests/obj/Debug/netcoreapp2.1/MatrixMultiplication.Tests.pdb
