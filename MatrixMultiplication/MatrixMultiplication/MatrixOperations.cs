@@ -3,143 +3,121 @@ using System.Threading.Tasks;
 
 namespace MatrixMultiplication
 {
-    public static class MatrixOperations
+    public static class MatrixOperations<T>
     {
-        private static void MultiplicatePartOfMatrix<T>(T[,] matrix1, T[,] matrix2, T[,] matrixResult,
-            (int, int) firstCycle, (int, int) secondCycle, (int, int) thirdCycle)
-            where T : struct, IFormattable
+        private static readonly MathProvider<T> Math;
+
+        static MatrixOperations()
+        {
+            if (typeof(T) == typeof(double))
+                Math = new DoubleMathProvider() as MathProvider<T>;
+            else if (typeof(T) == typeof(int))
+                Math = new IntMathProvider() as MathProvider<T>;
+            
+            if (Math == null)
+                throw new InvalidOperationException(
+                    "Type " + typeof(T) + " is not supported by MatrixOperations.");
+        }
+
+        private static void MultiplicateElements(T[,] matrix1, T[,] matrix2, T[,] matrixResult,
+            (int, int) firstCycle)
         {
             for (var i = firstCycle.Item1; i < firstCycle.Item2; i++)
             {
-                for (var j = secondCycle.Item1; j < secondCycle.Item2; j++)
+                for (var j = 0; j < matrix2.GetLength(1); j++)
                 {
-                    for (int k = thirdCycle.Item1; k < thirdCycle.Item2; k++)
+                    for (int k = 0; k < matrix1.GetLength(1); k++)
                     {
-                        matrixResult[i, j] = Addition(matrixResult[i, j],
-                            Multiplication(matrix1[i, k], matrix2[k, j]));
+                        matrixResult[i, j] = Math.Add(matrixResult[i, j],
+                            Math.Multiply(matrix1[i, k], matrix2[k, j]));
                     }
                 }
             }
         }
 
-        private static void SmartMultiplicatePartOfMatrix<T>(T[,] matrix1, T[,] matrix2, T[,] matrixResult,
-            (int, int) firstCycle, (int, int) secondCycle, (int, int) thirdCycle)
-            where T : struct, IFormattable
+        private static void SmartMultiplicateElements(T[,] matrix1, T[,] matrix2, T[,] matrixResult,
+            (int, int) firstCycle)
         {
             for (var i = firstCycle.Item1; i < firstCycle.Item2; i++)
             {
-                for (var k = secondCycle.Item1; k < secondCycle.Item2; k++)
+                for (var k = 0; k < matrix1.GetLength(1); k++)
                 {
-                    for (var j = thirdCycle.Item1; j < thirdCycle.Item2; j++)
+                    for (var j = 0; j < matrix2.GetLength(1); j++)
                     {
-                        matrixResult[i, j] = Addition(matrixResult[i, j],
-                            Multiplication(matrix1[i, k], matrix2[k, j]));
+                        matrixResult[i, j] = Math.Add(matrixResult[i, j],
+                            Math.Multiply(matrix1[i, k], matrix2[k, j]));
                     }
                 }
             }
         }
 
-        public static T[,] MultiplicateMatrix<T>(T[,] matrix1, T[,] matrix2)
-            where T : struct, IFormattable
+        public static T[,] MultiplicateMatrix(T[,] matrix1, T[,] matrix2)
         {
             CheckInput(matrix1, matrix2);
 
             var array1RowsAmount = matrix1.GetLength(0);
-            var array2ColumnsAmount = matrix2.GetLength(1);
-            var result = new T[array1RowsAmount, array2ColumnsAmount];
+            var result = new T[array1RowsAmount, matrix2.GetLength(1)];
 
-            MultiplicatePartOfMatrix(matrix1, matrix2, result, (0, array1RowsAmount),
-                (0, array2ColumnsAmount), (0, matrix1.GetLength(1)));
+            MultiplicateElements(matrix1, matrix2, result, (0, array1RowsAmount));
 
             return result;
         }
 
-        public static T[,] SmartMultiplicateMatrix<T>(T[,] matrix1, T[,] matrix2)
-            where T : struct, IFormattable
+        public static T[,] SmartMultiplicateMatrix(T[,] matrix1, T[,] matrix2)
         {
             CheckInput(matrix1, matrix2);
 
             var array1RowsAmount = matrix1.GetLength(0);
-            var array2ColumnsAmount = matrix2.GetLength(1);
-            var result = new T[array1RowsAmount, array2ColumnsAmount];
+            var result = new T[array1RowsAmount, matrix2.GetLength(1)];
 
-            SmartMultiplicatePartOfMatrix(matrix1, matrix2, result, (0, array1RowsAmount),
-                (0, matrix1.GetLength(1)), (0, array2ColumnsAmount));
+            SmartMultiplicateElements(matrix1, matrix2, result, (0, array1RowsAmount));
 
             return result;
         }
 
-        public static T[,] ParallelMultiplicateMatrix<T>(T[,] matrix1, T[,] matrix2)
-            where T : struct, IFormattable
+        public static T[,] ParallelMultiplicateMatrix(T[,] matrix1, T[,] matrix2)
         {
             CheckInput(matrix1, matrix2);
 
-            var array1RowsAmount = matrix1.GetLength(0);
-            var array2ColumnsAmount = matrix2.GetLength(1);
-            var result = new T[array1RowsAmount, array2ColumnsAmount];
-            Task task1;
-            Task task2;
-            var thirdCycle = (0, matrix1.GetLength(1));
-
-            if (array1RowsAmount > array2ColumnsAmount)
-            {
-                task1 = Task.Run(() => MultiplicatePartOfMatrix(matrix1, matrix2, result, (0, array1RowsAmount),
-                    (0, array2ColumnsAmount / 2), thirdCycle));
-                task2 = Task.Run(() => MultiplicatePartOfMatrix(matrix1, matrix2, result, (0, array1RowsAmount),
-                    (array2ColumnsAmount / 2, array2ColumnsAmount), thirdCycle));
-            }
-            else
-            {
-                task1 = Task.Run(() => MultiplicatePartOfMatrix(matrix1, matrix2, result, (0, array1RowsAmount / 2),
-                    (0, array2ColumnsAmount), thirdCycle));
-                task2 = Task.Run(() => MultiplicatePartOfMatrix(matrix1, matrix2, result,
-                    (array1RowsAmount / 2, array1RowsAmount),
-                    (0, array2ColumnsAmount), thirdCycle));
-            }
-
-            task1.Wait();
-            task2.Wait();
-
-            return result;
+            return ParallelOperations(matrix1, matrix2, MultiplicateElements);
         }
 
-        public static T[,] SmartParallelMultiplicateMatrix<T>(T[,] matrix1, T[,] matrix2)
-            where T : struct, IFormattable
+        public static T[,] SmartParallelMultiplicateMatrix(T[,] matrix1, T[,] matrix2)
         {
             CheckInput(matrix1, matrix2);
 
+            return ParallelOperations(matrix1, matrix2, SmartMultiplicateElements);
+        }
+
+        private static T[,] ParallelOperations(T[,] matrix1, T[,] matrix2,
+            Action<T[,], T[,], T[,], (int, int)> multiplicator)
+        {
             var array1RowsAmount = matrix1.GetLength(0);
-            var array2ColumnsAmount = matrix2.GetLength(1);
-            var result = new T[array1RowsAmount, array2ColumnsAmount];
-            Task task1;
-            Task task2;
-            var thirdCycle = (0, array2ColumnsAmount);
-            var matrix1Columns = matrix1.GetLength(1);
+            var result = new T[array1RowsAmount, matrix2.GetLength(1)];
+            var tasksCount = Environment.ProcessorCount;
+            var tasks = new Task[tasksCount];
+            var rowsForTask = array1RowsAmount / tasksCount;
 
-            if (array1RowsAmount > array2ColumnsAmount)
+            for (int n = 0; n < tasksCount; n++)
             {
-                task1 = Task.Run(() => SmartMultiplicatePartOfMatrix(matrix1, matrix2, result, (0, array1RowsAmount),
-                    (0, matrix1Columns / 2), thirdCycle));
-                task2 = Task.Run(() => SmartMultiplicatePartOfMatrix(matrix1, matrix2, result, (0, array1RowsAmount),
-                    (matrix1Columns / 2, matrix1Columns), thirdCycle));
-            }
-            else
-            {
-                task1 = Task.Run(() => SmartMultiplicatePartOfMatrix(matrix1, matrix2, result,
-                    (0, array1RowsAmount / 2),
-                    (0, matrix1Columns), thirdCycle));
-                task2 = Task.Run(() => SmartMultiplicatePartOfMatrix(matrix1, matrix2, result,
-                    (array1RowsAmount / 2, array1RowsAmount),
-                    (0, matrix1Columns), thirdCycle));
+                var lowerBorder = n * rowsForTask;
+                var upperBorder = (n + 1) * rowsForTask;
+                if (n == tasksCount - 1)
+                {
+                    upperBorder += array1RowsAmount % tasksCount;
+                }
+
+                tasks[n] = Task.Run(() =>
+                {
+                    multiplicator(matrix1, matrix2, result, (lowerBorder, upperBorder));
+                });
             }
 
-            task1.Wait();
-            task2.Wait();
-
+            Task.WaitAll(tasks);
             return result;
         }
 
-        private static void CheckInput<T>(T[,] matrix1, T[,] matrix2)
+        private static void CheckInput(T[,] matrix1, T[,] matrix2)
         {
             if (matrix1 == null)
             {
@@ -152,7 +130,7 @@ namespace MatrixMultiplication
             }
         }
 
-        public static void PrintMatrix<T>(T[,] matrix)
+        public static void PrintMatrix(T[,] matrix)
         {
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
@@ -163,16 +141,6 @@ namespace MatrixMultiplication
 
                 Console.WriteLine();
             }
-        }
-
-        private static T Multiplication<T>(T firstNumber, T secondNumber) where T : struct
-        {
-            return (dynamic) firstNumber * (dynamic) secondNumber;
-        }
-
-        private static T Addition<T>(T firstNumber, T secondNumber) where T : struct
-        {
-            return (dynamic) firstNumber + (dynamic) secondNumber;
         }
     }
 }

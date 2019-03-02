@@ -12,8 +12,8 @@ namespace MatrixMultiplication.Tests
             var array1 = new double[0, 0];
             var array2 = new double[0, 0];
 
-            Assert.IsEmpty(MatrixOperations.MultiplicateMatrix(array1, array2));
-            Assert.IsEmpty(MatrixOperations.SmartMultiplicateMatrix(array1, array2));
+            Assert.IsEmpty(MatrixOperations<double>.MultiplicateMatrix(array1, array2));
+            Assert.IsEmpty(MatrixOperations<double>.SmartMultiplicateMatrix(array1, array2));
         }
 
         [Test]
@@ -22,8 +22,8 @@ namespace MatrixMultiplication.Tests
             double[,] array1 = null;
             var array2 = new double[0, 0];
 
-            Assert.Throws<ArgumentNullException>(() => MatrixOperations.MultiplicateMatrix(array1, array2));
-            Assert.Throws<ArgumentNullException>(() => MatrixOperations.SmartMultiplicateMatrix(array1, array2));
+            Assert.Throws<ArgumentNullException>(() => MatrixOperations<double>.MultiplicateMatrix(array1, array2));
+            Assert.Throws<ArgumentNullException>(() => MatrixOperations<double>.SmartMultiplicateMatrix(array1, array2));
         }
 
         [Test]
@@ -32,8 +32,8 @@ namespace MatrixMultiplication.Tests
             var array1 = new double[0, 0];
             double[,] array2 = null;
 
-            Assert.Throws<ArgumentNullException>(() => MatrixOperations.MultiplicateMatrix(array1, array2));
-            Assert.Throws<ArgumentNullException>(() => MatrixOperations.SmartMultiplicateMatrix(array1, array2));
+            Assert.Throws<ArgumentNullException>(() => MatrixOperations<double>.MultiplicateMatrix(array1, array2));
+            Assert.Throws<ArgumentNullException>(() => MatrixOperations<double>.SmartMultiplicateMatrix(array1, array2));
         }
 
         [Test]
@@ -58,8 +58,8 @@ namespace MatrixMultiplication.Tests
                 {15, 17}
             };
 
-            Assert.AreEqual(result, MatrixOperations.MultiplicateMatrix(array1, array2));
-            Assert.AreEqual(result, MatrixOperations.SmartMultiplicateMatrix(array1, array2));
+            Assert.AreEqual(result, MatrixOperations<int>.MultiplicateMatrix(array1, array2));
+            Assert.AreEqual(result, MatrixOperations<int>.SmartMultiplicateMatrix(array1, array2));
         }
         
         [Test]
@@ -84,8 +84,8 @@ namespace MatrixMultiplication.Tests
                 {15, 17, 58, 55}
             };
 
-            Assert.AreEqual(result, MatrixOperations.MultiplicateMatrix(array1, array2));
-            Assert.AreEqual(result, MatrixOperations.SmartMultiplicateMatrix(array1, array2));
+            Assert.AreEqual(result, MatrixOperations<int>.MultiplicateMatrix(array1, array2));
+            Assert.AreEqual(result, MatrixOperations<int>.SmartMultiplicateMatrix(array1, array2));
         }
 
         [Test]
@@ -107,8 +107,8 @@ namespace MatrixMultiplication.Tests
                 {9, 5}
             };
 
-            Assert.AreEqual(result, MatrixOperations.MultiplicateMatrix(array1, array2));
-            Assert.AreEqual(result, MatrixOperations.SmartMultiplicateMatrix(array1, array2));
+            Assert.AreEqual(result, MatrixOperations<int>.MultiplicateMatrix(array1, array2));
+            Assert.AreEqual(result, MatrixOperations<int>.SmartMultiplicateMatrix(array1, array2));
         }
 
         [Test]
@@ -130,8 +130,8 @@ namespace MatrixMultiplication.Tests
                 {1.24, 0.503}
             };
 
-            var calculatedMatrix = MatrixOperations.MultiplicateMatrix(array1, array2);
-            var smartCalculatedMatrix = MatrixOperations.SmartMultiplicateMatrix(array1, array2);
+            var calculatedMatrix = MatrixOperations<double>.MultiplicateMatrix(array1, array2);
+            var smartCalculatedMatrix = MatrixOperations<double>.SmartMultiplicateMatrix(array1, array2);
             
             AssertMatrixElementsWithDelta(result, calculatedMatrix);
             AssertMatrixElementsWithDelta(result, smartCalculatedMatrix);
@@ -167,8 +167,8 @@ namespace MatrixMultiplication.Tests
                 {9, 5}
             };
 
-            Assert.AreEqual(result, MatrixOperations.ParallelMultiplicateMatrix(array1, array2));
-            Assert.AreEqual(result, MatrixOperations.SmartParallelMultiplicateMatrix(array1, array2));
+            Assert.AreEqual(result, MatrixOperations<int>.ParallelMultiplicateMatrix(array1, array2));
+            Assert.AreEqual(result, MatrixOperations<int>.SmartParallelMultiplicateMatrix(array1, array2));
         }
         
         [Test]
@@ -193,8 +193,8 @@ namespace MatrixMultiplication.Tests
                 {15, 17}
             };
 
-            Assert.AreEqual(result, MatrixOperations.ParallelMultiplicateMatrix(array1, array2));
-            Assert.AreEqual(result, MatrixOperations.SmartParallelMultiplicateMatrix(array1, array2));
+            Assert.AreEqual(result, MatrixOperations<int>.ParallelMultiplicateMatrix(array1, array2));
+            Assert.AreEqual(result, MatrixOperations<int>.SmartParallelMultiplicateMatrix(array1, array2));
         }
         
         [Test]
@@ -219,8 +219,8 @@ namespace MatrixMultiplication.Tests
                 {15, 17, 58, 55}
             };
 
-            Assert.AreEqual(result, MatrixOperations.ParallelMultiplicateMatrix(array1, array2));
-            Assert.AreEqual(result, MatrixOperations.SmartParallelMultiplicateMatrix(array1, array2));
+            Assert.AreEqual(result, MatrixOperations<int>.ParallelMultiplicateMatrix(array1, array2));
+            Assert.AreEqual(result, MatrixOperations<int>.SmartParallelMultiplicateMatrix(array1, array2));
         }
     }
 }

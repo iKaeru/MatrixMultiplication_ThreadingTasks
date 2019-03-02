@@ -23,11 +23,11 @@ namespace MatrixMultiplication
             parallelMultiplicator(squareMatrixOfInts1, squareMatrixOfInts2);
             watch.Stop();
             var result2 = watch.ElapsedMilliseconds;
-            Console.WriteLine($"PARALLEL Multiplicate with 2 Threads of matrix size {matrix1Width}x{matrix2Height} " +
+            Console.WriteLine($"PARALLEL Multiplicate of matrix size {matrix1Width}x{matrix2Height} " +
                               $"take:\n{result2} ms");
             watch.Reset();
-            var percent = (result1 - result2) * 100 / result1;
-            Console.WriteLine($"What is faster on {percent}% than regular multiplication");
+            var n = (double) result1 / result2;
+            Console.WriteLine($"What is {n:f2} times faster than regular multiplication");
             Console.WriteLine("===== Experiment Over =====");
             Console.WriteLine();
         }
@@ -35,18 +35,24 @@ namespace MatrixMultiplication
         static void Main()
         {
             Console.WriteLine("Multiplicate matrices of ints\n");
+
             MakeExperiment(MatrixGenerator.GenerateRectangleMatrixOfInts,
-                MatrixOperations.MultiplicateMatrix, MatrixOperations.ParallelMultiplicateMatrix,
+                MatrixOperations<int>.MultiplicateMatrix,
+                MatrixOperations<int>.ParallelMultiplicateMatrix,
                 300, 300, 300, 300);
-            
+
             Console.WriteLine("Multiplicate matrices of doubles\n");
+
             MakeExperiment(MatrixGenerator.GenerateRectangleMatrixOfDoubles,
-                MatrixOperations.MultiplicateMatrix, MatrixOperations.ParallelMultiplicateMatrix,
+                MatrixOperations<double>.MultiplicateMatrix,
+                MatrixOperations<double>.ParallelMultiplicateMatrix,
                 200, 100, 100, 200);
-            
+
             Console.WriteLine("Smart multiplicate matrices of doubles\n");
+
             MakeExperiment(MatrixGenerator.GenerateRectangleMatrixOfDoubles,
-                MatrixOperations.SmartMultiplicateMatrix, MatrixOperations.SmartParallelMultiplicateMatrix,
+                MatrixOperations<double>.SmartMultiplicateMatrix,
+                MatrixOperations<double>.SmartParallelMultiplicateMatrix,
                 200, 100, 100, 200);
         }
     }
